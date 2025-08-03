@@ -4,3 +4,4 @@ Official Repository for our paper "SkySearch: Satellite Video Search at Scale" (
 
 The code will be released soon. 
 
+<img src="img/skysearch.pdf" alt="SkySearch" width="400"/>
