@@ -1,7 +1,6 @@
 # SkySearch: Satellite Video Search at Scale
 
-Official Repository for our paper "SkySearch: Satellite Video Search at Scale" (KDD 2025 ADS Track).
+Official Repository for the paper "SkySearch: Satellite Video Search at Scale" (KDD 2025 ADS Track).
 
-The code will be released soon. 
+![SkySearch](img/skysearch-1.png)
 
-<img src="img/skysearch.pdf" alt="SkySearch" width="400"/>
