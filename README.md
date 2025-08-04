@@ -27,7 +27,96 @@ We provide **50GB** of real-world satellite images captured by the [**COMS satel
 ---
 
 ## Video Compression
-[TODO]
+We provide the codebase for training and inference of self-supervised compression models for satellite images and videos.
+The deployed code can be found in the compression directory.
+
+### 1. Image Preprocessing
+Preprocess raw images and generate downscaled versions for faster ranking and embedding extraction:
+```bash
+python image_preprocess.py \
+    --rawdatapath [RAW_IMAGE_DIR] \
+    --outputpath [PREPROCESSED_IMAGE_DIR] \
+    --smaller_outputdir [DOWNSCALED_IMAGE_DIR_FOR_FAST_RANKING] \
+    --rate 0.50
+```
+
+### 2. Image Model Training and Embedding
+* Generate triplet training data:
+```bash
+python make_traindata_image.py \
+    --imagepath [PREPROCESSED_IMAGE_DIR] \
+    --repeat_num 2 \
+    --posdiff_list 4 \
+    --negdiff_list 1 2 \
+    --split_type train \
+    --savename default
+```
+
+* Train the image encoder:
+```bash
+python train_image.py \
+    --gpu 0 \
+    --inputdata default \
+    --channel [CHANNEL] \
+    --batch_size 128 \
+    --epochs 20 \
+    --learning_rate 1e-6 \
+    --dim 256 \
+    --gamma 0.5 \
+    --savedir [OUTPUT_DIR]
+```
+* Generate image embeddings:
+```bash
+python make_embeddings_image.py \
+    --gpu 0 \
+    --modelpath [TRAINED_IMAGE_ENCODER_PATH] \
+    --outputdir [OUTPUT_DIR] \
+    --outputname [OUTPUT_NAME] \
+    --channel [CHANNEL]
+```
+
+### 3. Video Model Training and Embedding
+
+* Prepare video sequences:
+```bash
+python preprocess_video.py --length 12 --gap 60
+```
+
+* Generate video triplets:
+```bash
+python make_traindata_video.py \
+    --repeat_num 2 \
+    --posdiff_list 4 \
+    --negdiff_list 1 2 \
+    --split_type train
+```
+
+* Train the video encoder:
+```bash
+python train_video.py \
+    --gpu 0 \
+    --inputdata default \
+    --inputemb [IMAGE_EMBEDDING_PATH] \
+    --channel [CHANNEL] \
+    --batch_size 128 \
+    --epochs 20 \
+    --learning_rate 1e-6 \
+    --dim 256 \
+    --gamma 0.5 \
+    --videolength 12 \
+    --savedir [OUTPUT_DIR]
+```
+
+* Generate video embeddings
+```bash
+python make_embeddings_video.py \
+    --gpu 0 \
+    --modelpath [TRAINED_VIDEO_ENCODER_PATH] \
+    --inputemb [IMAGE_EMBEDDING_PATH] \
+    --outputdir [OUTPUT_DIR] \
+    --outputname [OUTPUT_NAME] \
+    --channel [CHANNEL]
+```
 
 ---
 
