@@ -4,7 +4,7 @@ Official Repository for the paper **SkySearch: Satellite Video Search at Scale**
 
 ![SkySearch](img/skysearch-1.png)
 
-# COMS Satellite Image Dataset 📁
+## COMS Satellite Image Dataset 📁
 This repository provides access to **52GB** of images captured by the [**COMS satellite**](https://en.wikipedia.org/wiki/Chollian).
 
 - The dataset is available for download [here](URL_TO_DATA).  
