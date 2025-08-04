@@ -40,7 +40,7 @@ python image_preprocess.py \
     --rate 0.50
 ```
 
-### 2. Image Model Training and Embedding
+### 2. Image Encoder Training and Embedding
 * Generate triplet training data:
 ```bash
 python make_traindata_image.py \
@@ -75,7 +75,7 @@ python make_embeddings_image.py \
     --channel [CHANNEL]
 ```
 
-### 3. Video Model Training and Embedding
+### 3. Video Encoder Training and Embedding
 
 * Prepare video sequences:
 ```bash
