@@ -32,7 +32,8 @@ We provide **50GB** of real-world satellite images captured by the [**COMS satel
 ---
 
 ## Video Prediction (Query Augmentation)
-We leverage predictive modeling to augment video-based queries and improve search quality.
+We leverage video prediction to augment the queries and improve long-term search quality.
+The prediction code can be found [here](prediction).
 
 ### To train the model:
 ```python
